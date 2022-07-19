@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -eu
+
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 \"post-title\""
+    exit 1
+fi
+
+filename=$(echo "$1" | sed -e "s/ +\././; y/A-Z /a-z-/" | tr '[:upper:]' '[:lower:]')
+
+hugo new posts/${filename}.md
